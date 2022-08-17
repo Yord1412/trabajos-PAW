@@ -12,6 +12,7 @@
 			margin: auto;
 		}
 	</style>
+
 </head>
 <body>
 	<canvas id="micanvas" width="500" height="500">
@@ -19,8 +20,14 @@
 	</canvas>
 
 	<script type="text/javascript">
+		function random_rgba() {
+    		var o = Math.round, r = Math.random, s = 255;
+    		return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+		}
 		var cv = document.getElementById('micanvas');
 		var ctx = cv.getContext('2d');
+		var color = "red";
+		var fig = "arc";
 
 		/*ctx.strokeStyle="white";
 		ctx.strokeRect(10,10,150,150);
@@ -36,7 +43,7 @@
 		*/
 
 		/* primer trabajo*/
-		
+		/*
 		ctx.fillStyle="blue"
 		ctx.fillRect(30,30,50,50);
 
@@ -45,10 +52,10 @@
 
 		ctx.fillStyle="rgb(200,0,50,.5)"
 		ctx.fillRect(110,110,50,50);
-		
+		*/
 
 		// segundo trabajo
-		
+		/*
 		ctx.moveTo(0,0);
 		ctx.lineTo(250,250);
 		ctx.stroke();
@@ -67,11 +74,11 @@
 		ctx.lineTo(200,250);
 		ctx.stroke();
 		ctx.fill();
-		
+		*/
 
 
 		//tercer trabajo
-		
+		/*
 		ctx.beginPath();
 		ctx.arc(250,100,50,0,2*Math.PI);
 		ctx.stroke();
@@ -80,17 +87,80 @@
 		ctx.arc(360,100,50,0,2*Math.PI);
 		ctx.stroke();
 		ctx.fill();
-		
+		*/
 
 		//ctx.fill();
 
 		//trabajo 4
-		
+		/*
 		ctx.font = "30px Arial";
 		ctx.fillText("hola mundo",50,30);
 
 		ctx.strokeText("hola mundo",50,60);
+		*/
+		//trabajo 5
+		var grd = ctx.createLinearGradient(0,0,200,0);
+		/*
+		grd.addColorStop(0,"red");
+		grd.addColorStop(0.5,"yellow");
+		grd.addColorStop(1,"blue");
+
+		ctx.fillStyle = grd;
+		ctx.fillRect(20, 20, 150, 100);
+		*/
 		
+		var grd = ctx.createLinearGradient(100,10,40,90,60);
+		grd.addColorStop(0,"red");
+		grd.addColorStop(0.5,"yellow");
+		grd.addColorStop(1,"blue");
+
+		ctx.fillStyle = grd;
+		ctx.fillRect(100, 100, 200, 80);
+		
+
+		//trabajo 6
+		/*
+		var img = document.getElementById("imagen");
+  		ctx.drawImage(img, 10, 10);
+		*/
+
+  		//trabajo 7
+  		cv.addEventListener('click', function(e){
+  			//ctx.fillStyle = grd;
+  			//ctx.fillRect(e.offsetX-20,e.offsetY-20,40,40);
+  			//ctx.fillStyle="rgb(200,0,50,.5)";
+  			ctx.fillStyle= color;
+  			
+  			if(fig=='rec'){
+  				ctx.fillRect(e.offsetX-20,e.offsetY-20,40,40);
+  				ctx.fillStyle="rgb(200,0,50,.5)";
+  			}
+  			else{
+  				ctx.beginPath();
+				ctx.arc(e.offsetX-20,e.offsetY-20,50,0,2*Math.PI);
+				ctx.fill();
+  			}
+  			
+  			/*
+  			ctx.beginPath();
+			ctx.arc(e.offsetX-20,e.offsetY-20,50,0,2*Math.PI);
+			ctx.fill();
+			*/
+  			//ctx.fillRect(20, 20, 150, 100);
+  		});
+
+  		//trabajo 7
+  		cv.addEventListener('mouseover', function(e){
+  			color = random_rgba();
+
+   		});
+
+  		//trabajo 8
+  		cv.addEventListener('mouseout', function(e){
+  			fig = (fig=='arc')?'rec':'arc';
+
+   		});
+
 	</script>
 
 </body>
