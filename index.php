@@ -26,8 +26,47 @@
 		}
 		var cv = document.getElementById('micanvas');
 		var ctx = cv.getContext('2d');
+		var Sx = 240;
+		var Sy = 240;
+
+		document.addEventListener('keydown', function(e){
+			console.log(e)
+			//arriba
+			if(e.which == 87 || e.which == 38){
+				Sy -= 5;
+
+			}
+			//abajo
+			if(e.which == 83 || e.which == 40){
+				Sy += 5;
+			}
+			//izquierda
+			if(e.which == 65 || e.which == 37){
+				Sx -= 5;
+			}
+			//derecha
+			if(e.which == 68 || e.which == 39){
+				Sx += 5;
+			}
+			paint();
+		})
+
+		function paint(){
+			
+			ctx.fillStyle = "white";
+			ctx.fillRect(Sx-15, Sy-15, 100, 100);
+			ctx.fillRect(Sx+15, Sy+15, 100, 100);
+
+			ctx.fillStyle = "blue";
+			ctx.fillRect(Sx, Sy, 60, 60);
+			ctx.strokeRect(Sx, Sy, 60, 60);
+
+
+		}
+		/*
 		var color = "red";
 		var fig = "arc";
+		var press;
 
 		/*ctx.strokeStyle="white";
 		ctx.strokeRect(10,10,150,150);
@@ -108,7 +147,7 @@
 		ctx.fillStyle = grd;
 		ctx.fillRect(20, 20, 150, 100);
 		*/
-		
+		/*
 		var grd = ctx.createLinearGradient(100,10,40,90,60);
 		grd.addColorStop(0,"red");
 		grd.addColorStop(0.5,"yellow");
@@ -116,15 +155,16 @@
 
 		ctx.fillStyle = grd;
 		ctx.fillRect(100, 100, 200, 80);
-		
+		*/
 
 		//trabajo 6
 		/*
 		var img = document.getElementById("imagen");
   		ctx.drawImage(img, 10, 10);
 		*/
-
+		
   		//trabajo 7
+  		/*
   		cv.addEventListener('click', function(e){
   			//ctx.fillStyle = grd;
   			//ctx.fillRect(e.offsetX-20,e.offsetY-20,40,40);
@@ -147,8 +187,10 @@
 			ctx.fill();
 			*/
   			//ctx.fillRect(20, 20, 150, 100);
-  		});
-
+  		/*
+  	 	});
+		
+  		/*
   		//trabajo 7
   		cv.addEventListener('mouseover', function(e){
   			color = random_rgba();
@@ -160,7 +202,36 @@
   			fig = (fig=='arc')?'rec':'arc';
 
    		});
+   		*/
+  		/*
+   		//trabajo 9 dibujar con el mouse mientras pases por el area del canvas
+   		cv.addEventListener('mousemove', function(e){
+   			if(press){
+   				ctx.fillStyle="rgb(200,0,50,.5)";
+   				//ctx.fillStyle= color;
+   				ctx.fillRect(e.offsetX-20,e.offsetY-20,10,10);
+   			}
+   			
 
+   		});
+   		*/
+   		/*
+   		//trabajo 10 pulsar para dibujar los cuadrados (y un if en el trabajo 9)
+   		cv.addEventListener('mousedown', function(e){
+   			press = true;
+
+   		});
+   		cv.addEventListener('mouseup', function(e){
+   			press = false;
+
+   		});
+
+   		//trabajo 11
+   		cv.addEventListener('key', function(e){
+   			press = true;
+
+   		});
+   		*/
 	</script>
 
 </body>
