@@ -32,17 +32,35 @@
 		var Sy = 240;
 		var speed = 5;
 		var score = 0;
+		var wall = null;
+		var wall2 = null;
+
+		var imgpared = new Image();
+		var imgplayer = new Image();
+		var imgplayer2 = new Image(); 
+
+		var sonido = new Audio();	
+
+		var pause = false;
 
 		var direction = 'left';
+
 
 		function start(){
 			cv = document.getElementById('micanvas');
 			ctx = cv.getContext('2d');
 
-			player = new cuadrado(Sx, Sy, 40, 40, "blue");
+			player = new cuadrado(Sx, Sy, 40, 40, "green");
 
 			player2 = new cuadrado(generateRandomInteger(500), generateRandomInteger(500), 40, 40, "red");
 
+			wall = new cuadrado(100, 100, 40,80, "gray");
+			wall2 = new cuadrado(100, 300, 150,50, "gray");
+
+			imgpared.src = 'pared.png';
+			imgplayer.src = 'jugador.png';
+			imgplayer2.src = 'twitter.png';
+			sonido.src = 'click.mp3';
 			paint();
 		}
 
@@ -61,13 +79,33 @@
 			ctx.fillRect(player.x+15, player.y+15, 100, 100);
 			player.dibujar(ctx);
 			player2.dibujar(ctx);
+			wall.dibujar(ctx);
+			wall.dibujar(ctx);
+			ctx.drawImage(imgpared, wall.x,wall.y,40,80);
+			ctx.drawImage(imgpared, wall2.x,wall2.y,150,50);
+			ctx.drawImage(imgplayer, player.x, player.y, 40, 40);
+			ctx.drawImage(imgplayer2, player2.x, player2.y, 40, 40);
+
 			/*
 			//ctx.fillStyle = "blue";
 			ctx.fillStyle = random_rgba();
 			ctx.fillRect(Sx, Sy, 60, 60);
 			ctx.strokeRect(Sx, Sy, 60, 60);
 			*/
-			update();
+			//update();
+			if(pause){
+				ctx.fillStyle = "rgba(0,0,0,0.5)";
+				ctx.fillRect(0,0,500,500);
+				
+				
+				ctx.fillStyle = "white";
+				ctx.fillText("pause",250,250);
+				
+			}else{
+
+				update();			
+			}
+
 		}
 
 		function update(){
@@ -108,6 +146,30 @@
 				player2.y = generateRandomInteger(500);
 
 				score += 10;
+
+				sonido.play();
+			}
+
+			if(player.se_tocan(wall) || player.se_tocan(wall2)){
+				if(direction == 'left'){
+					player.x += 5;
+					
+				}
+
+				if(direction == 'right'){
+					player.x -= 5;
+					
+				}
+
+				if(direction == 'up'){
+					player.y += 5;
+					
+				}
+				
+				if(direction == 'down'){
+					player.y -= 5;
+					
+				}
 			}
 
 			
@@ -177,6 +239,13 @@
 				//Sx += 5;
 			}
 			//paint();
+
+			//pausa
+			if(e.which == 32){
+				//pause = true;
+				pause = (pause)?false:true;
+
+			}
 			
 		})
 
