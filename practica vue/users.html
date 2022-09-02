@@ -13,32 +13,16 @@
 	<div id="contenedor">
 		
 		<p>
-			{{users}}
+			bienvenido {{user}}
 		</p>
-		<form>
-			<fieldset>
-				<legend>
-					datos acceso
-				</legend>
-				<label>
-					correo electronico
-				</label>
-				<input type="email" v-model="email" name="">
-				<br>
+		
+		<table>
+			<thead>
+				
+			</thead>
 
-				<label>
-					password
-				</label>
-				<input type="password" v-model="password" name="">
-				<br>
 
-				<button @click="login">
-					acceder
-				</button>
-
-			</fieldset>
-		</form>
-			
+		</table>
 		
 		
 	</div>
@@ -65,17 +49,13 @@
 					var access = this.users.map(function(u){
 						if (tmp_mail === u.email) {
 							if (tmp_pwd === u.password) {
-								/*
+
 								var tmp_usr ={
 									name: u.name,
-									username: u.username,
-									email: u.email
+									
 								}
 
-								localStorage.setItem('user',JSON.stringify(u.name))
-								*/
 								alert("acceso consedido")
-								window.location.href = "users.html"
 							}
 							
 						}
@@ -90,11 +70,18 @@
 				}
 
 			},
+
 			mounted(){
+
+				var cat = localStorage.getItem('user');
+				var usr = JSON.parse:(usr);
+				this.user = usr.name;
+				/*
 				fetch('data/users.json')
 					.then((res)=> res.json())
 					.then((json)=>(this.users = json))
 					.catch((err)=> (alert('no data')))
+				*/
 			}
 
 		}).mount('#contenedor')
