@@ -1,0 +1,32 @@
+//estar ubicado en la carpeta desde el cmd, y utilizar el codigo- "lessc main.less main.css"
+
+//Ejemplo de una variable
+@bgcolor: #438ac8;
+
+//mixing parametro que se puede llamar
+.setBackgroundGeneral(@color){
+	background-color: @color;
+}
+
+.container{
+	
+	fieldset{
+		background: @bgcolor;
+		margin: auto;
+		form{
+
+			whidth:300px;
+			height:400px;
+
+			.setBackgroundGeneral(red);
+			label{
+				background: green;
+			}
+			button{
+				
+				//background-color:cyan;
+				color:blue;
+			}
+		}
+	}
+}
