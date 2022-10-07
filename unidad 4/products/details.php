@@ -1,3 +1,12 @@
+<?php
+	include "../app/ProductsController.php";
+
+	$productController = new ProductsController(); 
+
+	$product = $productController->getProductBySlug($_GET['slug']);
+
+	#echo json_encode($product);
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,9 +15,7 @@
 	<body>
 
 		<!-- NAVBAR -->
-		<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
-			<?php include '../layouts/nav.template.php'; ?>
-		</nav>
+		<?php include '../layouts/nav.template.php'; ?>
 		<!-- NAVBAR -->
 
 		<div class="container-fluid">
@@ -16,29 +23,7 @@
 			<div class="row">
 				
 				<!-- SIDEBAR -->
-				<div class="col-sm-2 d-sm-block d-none bg-light sidebar">
-					
-					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-			           
-			          <li class="nav-item">
-			            <a class="nav-link" href="#">Link</a>
-			          </li>
-			          <li class="nav-item dropdown">
-			            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			              Dropdown
-			            </a>
-			            <ul class="dropdown-menu dropdown-menu-dark">
-			              <li><a class="dropdown-item" href="#">Action</a></li>
-			              <li><a class="dropdown-item" href="#">Another action</a></li>
-			              <li>
-			                <hr class="dropdown-divider">
-			              </li>
-			              <li><a class="dropdown-item" href="#">Something else here</a></li>
-			            </ul>
-			          </li>
-			        </ul>	
-
-				</div>
+				<?php include '../layouts/sidebar.template.php'; ?>
 				<!-- SIDEBAR -->
 
 				<div class="col-md-10 col-lg-10 col-sm-12">
@@ -59,17 +44,22 @@
 					<section>
 						
 						<div class="row">
-							
 							 
 
 							<div class="col-md-4 col-sm-12"> 
 
 								<div class="card mb-2">
-								  <img src="../public/img/logo.png" class="card-img-top" alt="...">
+								  <img src="<?= $product->cover ?>" class="card-img-top" alt="...">
 								  <div class="card-body">
-								    <h5 class="card-title">Card title</h5>
-								    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-								    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+								    <h5 class="card-title">
+								    	<?= $product->name ?>
+								    </h5>
+								    <h6 class="card-subtitle mb-2 text-muted">
+								    	<?= $product->brand->name ?>
+								    </h6>
+								    <p class="card-text">
+								    	<?= $product->description ?>
+								    </p>
 
 								    <div class="row">
 									    <a data-bs-toggle="modal" data-bs-target="#addProductModal" href="#" class="btn btn-warning mb-1 col-6">
@@ -85,7 +75,34 @@
 
 							</div>
 
-							
+							<div class="col-md-4 col-sm-12"> 
+
+								<h4>
+									Categorías
+								</h4>
+								<ul>
+									<?php foreach ($product->categories as $category): ?>
+									<li>
+										<?= $category->name ?>
+									</li>
+									<?php endforeach ?>
+								</ul>
+
+								<br>
+
+								<h4>
+									Etiquetas
+								</h4>
+								<ul>
+									<?php foreach ($product->tags as $tag): ?>
+									<li>
+										<?= $tag->name ?>
+									</li>
+									<?php endforeach ?>
+								</ul>
+
+							</div>
+ 
 
 						</div>
 
@@ -135,8 +152,8 @@
 		  </div>
 		</div>
 
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<?php include '../layouts/scripts.template.php'; ?>
+		
 		<script type="text/javascript">
 			function eliminar(target)
 			{

@@ -1,3 +1,6 @@
+<?php 
+	include "app/config.php";
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,8 +24,7 @@
 				<div class="row registro justify-content-md-center align-items-center">
 					
 					<div class="col-md-6 col-sm-12 p-3 border">
-						<!-- falta aqui -->
-						<form method="post" action="app/AutController.php">
+						<form method="post" action="app/AuthController.php">
 					
 							<h1 class="text-center">
 								Acceso al panel
@@ -62,8 +64,10 @@
 							<button class="btn btn-primary col-12" type="submit">
 								A C C E D E R
 							</button>
-							<!-- falta aqui -->
+
 							<input type="hidden" name="action" value="access">
+
+							<input type="hidden" name="super_token" value="<? $_SESSION['super_token']?>">
 
 						</form>
 					</div>

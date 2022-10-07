@@ -1,4 +1,5 @@
-<div class="container-fluid">
+		<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+		  <div class="container-fluid">
 		    
 		    <a class="navbar-brand" href="#">
 		      <img src="../public/img/logo.png" alt="Bootstrap" width="30" height="24">
@@ -29,4 +30,5 @@
 		        </li>
 		      </ul> 
 		    </div>
-</div>
+		  </div>
+		</nav>
