@@ -1,15 +1,28 @@
-.container fieldset {
-  background: #438ac8;
+.container {
+  width: 80%;
   margin: auto;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
 }
 .container fieldset form {
-  whidth: 300px;
-  height: 400px;
-  background-color: red;
+  background-color: yellow;
 }
 .container fieldset form label {
-  background: green;
+  margin-top: 10px;
+  display: block;
+  background-color: #8385DA;
+}
+.container fieldset form input {
+  width: 50%;
 }
 .container fieldset form button {
-  color: blue;
+  width: 80%;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #CA83DA;
+  color: white;
+  border-radius: 5px;
+  border-style: none;
 }
