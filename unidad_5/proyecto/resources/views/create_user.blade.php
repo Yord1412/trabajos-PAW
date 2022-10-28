@@ -17,10 +17,27 @@
 		</label>
 		<input type="text" name="name">
 
+		<br>
+
+		<label>
+			Apellido
+		</label>
+		<input type="text" name="lastname">
+		<br>
+
 		<label>
 			Email
 		</label>
 		<input type="email" name="email">
+
+		<br>
+
+		<label>
+			Contraseña
+		</label>
+		<input type="password" name="password">
+
+		<br>
 
 		<button>
 			Guardar
