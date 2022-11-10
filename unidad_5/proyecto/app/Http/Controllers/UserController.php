@@ -15,8 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //return user::all();
-        return user::select('name')->get();
+        return User::select('name')->get();
     }
 
     /**
@@ -38,11 +37,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //echo $request->name;
+        $user = User::create( $request->all() );
 
         //echo "<br>". $request->email;
-
-        $user = User::create($request->all());
-
         return $user;
     }
 
@@ -54,7 +51,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //return User::where('id',$id)->get();
+        //echo $id;
         return User::find($id);
     }
 

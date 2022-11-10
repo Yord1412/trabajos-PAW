@@ -18,11 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//ruta del login
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/home', function () {
+    return view('auth.home');
+})->name('home');
+
 //creacion de rutas hacia usercontroller
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/create', [UserController::class, 'create']);
-Route::get('/users/{id}', [UserController::class, 'show']);
-Route::post('/users', [UserController::class, 'store']);
+
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/create', [UserController::class, 'create']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::post('/users', [UserController::class, 'store']);
+
+
 /*
 Route::get('saludo/', function(){
     return "hola";
