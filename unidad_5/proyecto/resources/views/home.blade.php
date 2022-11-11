@@ -6,12 +6,11 @@
 	<title></title>
 </head>
 <body>
-	<h1>
-		Hola {{Auth::user()->name}}
+	<h1>  
+		Hola {{ Auth::user()->name }}
 	</h1>
 
-	<a href="{{ url('users')}}">
-		
+	<a href="{{ url('users') }}">
 		ir a usuarios
 	</a>
 
@@ -19,7 +18,7 @@
 		@csrf
 
 		<button type="submit">
-			salir
+			Salir
 		</button>
 	</form>
 	

@@ -24,16 +24,16 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::get('/home', function () {
-    return view('auth.home');
+    return view('home');
 })->name('home');
 
 //creacion de rutas hacia usercontroller
-
+Route::middleware(['auth'])->group(function(){
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/create', [UserController::class, 'create']);
     Route::get('/users/{id}', [UserController::class, 'show']);
-    Route::post('/users', [UserController::class, 'store']);
-
+    Route::post('/users', [UserController::class, 'update']);
+});
 
 /*
 Route::get('saludo/', function(){
